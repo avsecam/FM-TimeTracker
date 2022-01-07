@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" href="./style.css">
+
+  <title>Frontend Mentor | Time tracking dashboard</title>
+</head>
+<body>
+
+  <main>
+    <div class="profile">
+      <div class="profile__info">
+        <img class="profile__info__pic" src="images/image-jeremy.png"/>
+        <div class="profile__info__main">Report for<br><h1>Jeremy Robson</h1></div>
+      </div>
+      <div class="chooseTime">
+        <button onclick="changeTime('daily')">Daily</button>
+        <button onclick="changeTime('weekly')">Weekly</button>
+        <button onclick="changeTime('monthly')">Monthly</button>
+      </div>
+    </div>
+
+    <div class="trackers">
+      <div class="tracker" id="workTracker">
+        <div class="tracker__main">
+          <div class="tracker__header">
+            Work
+            <img src="./images/icon-ellipsis.svg" class="tracker__options" alt="Options"/>
+          </div>
+          <div class="tracker__currTime"></div>
+          <div class="tracker__prevTime"></div>
+        </div>
+      </div>
+      <div class="tracker" id="playTracker">
+        <div class="tracker__main">
+          <div class="tracker__header">
+            Play
+            <img src="./images/icon-ellipsis.svg" class="tracker__options" alt="Options"/>
+          </div>
+          <div class="tracker__currTime"></div>
+          <div class="tracker__prevTime"></div>
+        </div>
+      </div>
+      <div class="tracker" id="studyTracker">
+        <div class="tracker__main">
+          <div class="tracker__header">
+            Study
+            <img src="./images/icon-ellipsis.svg" class="tracker__options" alt="Options"/>
+          </div>
+          <div class="tracker__currTime"></div>
+          <div class="tracker__prevTime"></div>
+        </div>
+      </div>
+      <div class="tracker" id="exerciseTracker">
+        <div class="tracker__main">
+          <div class="tracker__header">
+            Exercise
+            <img src="./images/icon-ellipsis.svg" class="tracker__options" alt="Options"/>
+          </div>
+          <div class="tracker__currTime"></div>
+          <div class="tracker__prevTime"></div>
+        </div>
+      </div>
+      <div class="tracker" id="socialTracker">
+        <div class="tracker__main">
+          <div class="tracker__header">
+            Social
+            <img src="./images/icon-ellipsis.svg" class="tracker__options" alt="Options"/>
+          </div>
+          <div class="tracker__currTime"></div>
+          <div class="tracker__prevTime"></div>
+        </div>
+      </div>
+      <div class="tracker" id="careTracker">
+        <div class="tracker__main">
+          <div class="tracker__header">
+            Self Care
+            <img src="./images/icon-ellipsis.svg" class="tracker__options" alt="Options"/>
+          </div>
+          <div class="tracker__currTime"></div>
+          <div class="tracker__prevTime"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    let json = [
+  {
+    "title": "Work",
+    "timeframes": {
+      "daily": {
+        "current": 5,
+        "previous": 7
+      },
+      "weekly": {
+        "current": 32,
+        "previous": 36
+      },
+      "monthly": {
+        "current": 103,
+        "previous": 128
+      }
+    }
+  },
+  {
+    "title": "Play",
+    "timeframes": {
+      "daily": {
+        "current": 1,
+        "previous": 2
+      },
+      "weekly": {
+        "current": 10,
+        "previous": 8
+      },
+      "monthly": {
+        "current": 23,
+        "previous": 29
+      }
+    }
+  },
+  {
+    "title": "Study",
+    "timeframes": {
+      "daily": {
+        "current": 0,
+        "previous": 1
+      },
+      "weekly": {
+        "current": 4,
+        "previous": 7
+      },
+      "monthly": {
+        "current": 13,
+        "previous": 19
+      }
+    }
+  },
+  {
+    "title": "Exercise",
+    "timeframes": {
+      "daily": {
+        "current": 1,
+        "previous": 1
+      },
+      "weekly": {
+        "current": 4,
+        "previous": 5
+      },
+      "monthly": {
+        "current": 11,
+        "previous": 18
+      }
+    }
+  },
+  {
+    "title": "Social",
+    "timeframes": {
+      "daily": {
+        "current": 1,
+        "previous": 3
+      },
+      "weekly": {
+        "current": 5,
+        "previous": 10
+      },
+      "monthly": {
+        "current": 21,
+        "previous": 23
+      }
+    }
+  },
+  {
+    "title": "Self Care",
+    "timeframes": {
+      "daily": {
+        "current": 0,
+        "previous": 1
+      },
+      "weekly": {
+        "current": 2,
+        "previous": 2
+      },
+      "monthly": {
+        "current": 7,
+        "previous": 11
+      }
+    }
+  }
+]
+
+    function changeTime(time) {
+      let trackers = document.getElementsByClassName("tracker");
+      let buttons = document.querySelectorAll(".chooseTime button");
+
+      for(var i = 0; i < 3; i++) {
+        buttons[i].style.color = "hsl(235, 45%, 61%)";
+      }
+
+      if(time === "daily") {
+        for(var i = 0; i < 6; i++) {
+          trackers[i].querySelector(".tracker__currTime").textContent = json[i].timeframes.daily.current + "hrs"; 
+          trackers[i].querySelector(".tracker__prevTime").textContent = "Yesterday - " + json[i].timeframes.daily.previous + "hrs";  
+        }
+        buttons[0].style.color = "white";
+      } else if(time === "weekly") {
+        for(var i = 0; i < 6; i++) {
+          trackers[i].querySelector(".tracker__currTime").textContent = json[i].timeframes.weekly.current + "hrs"; 
+          trackers[i].querySelector(".tracker__prevTime").textContent = "Last Week - " + json[i].timeframes.weekly.previous + "hrs";  
+        buttons[1].style.color = "white";
+        }
+      } else {
+        for(var i = 0; i < 6; i++) {
+          trackers[i].querySelector(".tracker__currTime").textContent = json[i].timeframes.monthly.current + "hrs"; 
+          trackers[i].querySelector(".tracker__prevTime").textContent = "Last Month - " + json[i].timeframes.monthly.previous + "hrs";  
+        buttons[2].style.color = "white";
+        }
+      }
+    }
+
+    changeTime("daily");
+
+    const resizeObserver = new ResizeObserver(entries => {
+      try {
+        if(entries[0].contentRect.width / entries[0].contentRect.height > 1) {
+          if(entries[1].contentRect.width <= 832) {
+            document.querySelector("body").style.justifyContent = "initial";
+          } else {
+            document.querySelector("body").style.justifyContent = "center";
+          }
+        } else {
+          if(entries[0].contentRect.width <= 362) {
+            document.querySelector("body").style.justifyContent = "initial";
+          } else {
+            document.querySelector("body").style.justifyContent = "center";
+          }
+        }
+      } catch(e) {}
+    });
+    resizeObserver.observe(document.querySelector("body"));
+    resizeObserver.observe(document.querySelector("main"));
+  </script>
+</body>
+</html>
