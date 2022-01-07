@@ -6,13 +6,14 @@ This is a solution to the [Time tracking dashboard challenge on Frontend Mentor]
 
 ## Links
 
-- [GitHub](https://github.com/avsecam/FM-NFT)
-- [Live Site](https://avsecam.github.io/FM-NFT/)
+- [GitHub](https://github.com/avsecam/FM-TimeTracker)
+- [Live Site](https://avsecam.github.io/FM-TimeTracker/)
 
 ## Built with
 
 - HTML
 - CSS with SCSS
+- JS
 
 ## Author
 
